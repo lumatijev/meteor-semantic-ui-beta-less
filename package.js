@@ -346,7 +346,7 @@ Package.onUse(function(api) {
 		assetPath + 'themes/striped/modules/progress.variables',
 		assetPath + 'themes/timeline/views/feed.overrides',
 		assetPath + 'themes/timeline/views/feed.variables',
-		assetPath + 'theme.config.example'
+		assetPath + 'theme.config'
 
 	];
 
