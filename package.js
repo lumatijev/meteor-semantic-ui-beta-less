@@ -1,6 +1,6 @@
 Package.describe({
 	summary: "Semantic UI Beta (less)",
-	version: "1.0.0-1",
+	version: "1.0.0-beta",
 	name: "lumatijev:semantic-ui-beta",
 	git: "https://github.com/lumatijev/meteor-semantic-ui-beta-less.git"
 });
