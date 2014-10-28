@@ -16,7 +16,7 @@
 @type    : 'element';
 @element : 'segment';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -48,7 +48,8 @@
   visibility: hidden;
 }
 
-.ui.vertical.segment {
+/* Vertical */
+.ui[class*="vertical segment"] {
   margin: 0em;
   padding-left: 0em;
   padding-right: 0em;
@@ -58,15 +59,16 @@
   border: none;
   box-shadow: 0px 1px 0px @borderColor;
 }
-.ui.vertical.segment:first-child {
+.ui[class*="vertical segment"]:first-child {
   padding-top: 0em;
 }
-.ui.vertical.segment:last-child {
+.ui[class*="vertical segment"]:last-child {
   padding-bottom: 0em;
   box-shadow: none;
 }
 
-.ui.horizontal.segment {
+/* Horizontal */
+.ui[class*="horizontal segment"] {
   margin: 0em;
   padding-top: 0em;
   padding-bottom: 0em;
@@ -75,12 +77,6 @@
   border-radius: 0px;
   border: none;
   box-shadow: 1px 0px 0px @borderColor;
-}
-.ui.horizontal.segment:first-child {
-  padding-left: 0em;
-}
-.ui.horizontal.segment:last-child {
-  padding-right: 0em;
 }
 
 /*-------------------
@@ -121,12 +117,9 @@
   padding-top: @pageGridMargin;
   padding-bottom: @pageGridMargin;
 }
-.ui.grid.segment,
-.ui.grid .ui.segment.row,
-.ui.grid .ui.segment.column {
-  border-radius: 0em;
-  box-shadow: none;
-  border: none;
+.ui.grid.segment {
+  margin: @margin 0rem;
+  border-radius: @borderRadius;
 }
 
 /* Table */
@@ -221,6 +214,14 @@
 }
 
 /*-------------------
+       Compact
+--------------------*/
+
+.ui.compact.segment {
+  display: table;
+}
+
+/*-------------------
        Circular
 --------------------*/
 
@@ -245,9 +246,70 @@
             States
 *******************************/
 
+/*--------------
+    Disabled
+---------------*/
+
 .ui.disabled.segment {
   opacity: @disabledOpacity;
   color: @disabledTextColor;
+}
+
+/*--------------
+    Loading
+---------------*/
+
+.ui.loading.segment {
+  position: relative;
+  cursor: default;
+  point-events: none;
+  text-shadow: none !important;
+  color: transparent !important;
+  transition: all 0s linear;
+  z-index: 100;
+}
+.ui.loading.segment:before {
+  position: absolute;
+  content: '';
+  top: 0%;
+  left: 0%;
+  background: @loaderDimmerColor;
+  width: 100%;
+  height: 100%;
+  border-radius: @borderRadius;
+  z-index: @loaderDimmerZIndex;
+}
+.ui.loading.segment:after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+
+  margin: @loaderMargin;
+  width: @loaderSize;
+  height: @loaderSize;
+
+  animation: segment-spin @loaderSpeed linear;
+  animation-iteration-count: infinite;
+
+  border-radius: @circularRadius;
+
+  border-color: @loaderLineColor @loaderFillColor @loaderFillColor @loaderFillColor;
+  border-style: solid;
+  border-width: @loaderLineWidth;
+
+  box-shadow: 0px 0px 0px 1px transparent;
+  visibility: visible;
+  z-index: @loaderLineZIndex;
+}
+
+@keyframes segment-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 
@@ -387,9 +449,11 @@
 .ui.floated.segment,
 .ui[class*="left floated"].segment {
   float: left;
+  margin-right: @margin;
 }
 .ui[class*="right floated"].segment {
   float: right;
+  margin-left: @margin;
 }
 
 
@@ -418,6 +482,7 @@
 .ui.inverted.block.segment,
 .ui.inverted.attached.segment {
   box-shadow: none !important;
+  border: none !important;
 }
 
 /*-------------------
@@ -451,15 +516,21 @@
 .ui.segment.attached {
   top: 0px;
   bottom: 0px;
-  margin: 0em;
+  margin: 0em @attachedHorizontalOffset;
+  width: @attachedWidth;
+  max-width: @attachedWidth;
   border-radius: 0px;
   box-shadow: @attachedBoxShadow;
+  border: @attachedBorder;
+}
+.ui.segment.attached + .ui.segment.attached {
+  border-top: none;
 }
 
+/* Top */
 .ui[class*="top attached"].segment {
   top: @attachedTopOffset;
   bottom: 0px;
-
   margin-top: @margin;
   margin-bottom: 0em;
   border-radius: @borderRadius @borderRadius 0em 0em;
@@ -468,6 +539,7 @@
   margin-top: 0em;
 }
 
+/* Bottom */
 .ui.segment[class*="bottom attached"] {
   top: @attachedBottomOffset;
   bottom: 0px;

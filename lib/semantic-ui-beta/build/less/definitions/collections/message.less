@@ -15,7 +15,7 @@
 @type    : 'collection';
 @element : 'message';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -51,9 +51,13 @@
 .ui.message .header {
   display: @headerDisplay;
   font-family: @headerFont;
-  font-size: @headerFontSize;
   font-weight: @headerFontWeight;
   margin: 0em 0em 0em @headerDistance;
+}
+
+/* Default font size */
+.ui.message .header:not(.ui) {
+  font-size: @headerFontSize;
 }
 
 /* Paragraph */
@@ -165,9 +169,7 @@
 .ui.attached.message {
   margin-bottom: @attachedYOffset;
   border-radius: @borderRadius @borderRadius 0em 0em;
-  box-shadow:
-    @attachedBoxShadow
-  ;
+  box-shadow: @attachedBoxShadow;
   margin-left: @attachedXOffset;
   margin-right: @attachedXOffset;
 }
@@ -199,20 +201,26 @@
 }
 .ui.icon.message > .icon:not(.close) {
   display: table-cell;
+  width: auto;
   vertical-align: @iconVerticalAlign;
   font-size: @iconSize;
   opacity: @iconOpacity;
-  width: 1em;
 }
 .ui.icon.message > .content {
   display: table-cell;
+  width: 100%;
   vertical-align: @iconVerticalAlign;
 }
+
 
 .ui.icon.message .icon:not(.close) + .content {
   padding-left: @iconContentDistance;
 }
+.ui.icon.message .circular.icon {
+  width: 1em;
+}
 .ui.icon.message .circular.icon + .content {
+  width: auto;
   padding-left: @circularIconContentDistance;
 }
 

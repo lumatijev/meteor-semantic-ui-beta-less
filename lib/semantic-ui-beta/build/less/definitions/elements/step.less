@@ -16,7 +16,7 @@
 @type    : 'element';
 @element : 'step';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -117,7 +117,7 @@
 
 .ui.ordered.steps .step > * {
   display: table-cell;
-  vertical-align: top;
+  vertical-align: @iconVerticalAlign;
 }
 
 
@@ -267,6 +267,7 @@
 .ui.fluid.steps {
   width: 100%;
 }
+
 
 /* Attached */
 .attached.ui.steps {

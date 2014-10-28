@@ -16,7 +16,7 @@
 @type    : 'element';
 @element : 'header';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 /*******************************
             Header
@@ -47,6 +47,7 @@
 /* Icon and Content Together */
 .ui.header > .icon {
   display: table-cell;
+  opacity: @iconOpacity;
   font-size: @iconSize;
   padding-top: @iconOffset;
 
@@ -72,13 +73,13 @@
 
 /* Positioning */
 .ui.header:first-child {
-  margin-top: 0em;
+  margin-top: @firstMargin;
 }
 .ui.header:last-child {
-  margin-bottom: 0em;
+  margin-bottom: @lastMargin;
 }
 .ui.header + p {
-  margin-top: @precedingParagraphMargin;
+  margin-top: @nextParagraphTopMargin;
 }
 
 
@@ -146,14 +147,20 @@ h5.ui.header {
 .ui.icon.header {
   display: block;
   text-align: center;
+  margin: @iconHeaderTopMargin 0em @iconHeaderBottomMargin;
+}
+.ui.icon.header:first-child {
+  margin-top: @iconHeaderFirstMargin;
 }
 .ui.icon.header .icon {
   float: none;
   display: block;
+  width: auto;
+  height: auto;
+  padding: 0em;
   font-size: @iconHeaderSize;
   margin: 0em auto @iconHeaderMargin;
   opacity: @iconHeaderOpacity;
-  padding: 0em;
 }
 .ui.icon.header .content {
   display: block;
@@ -459,7 +466,7 @@ a.ui.inverted.yellow.header:hover {
 .ui.small.block.header {
   font-size: @smallBlock;
 }
-.ui.block.header {
+.ui.block.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   font-size: @mediumBlock;
 }
 .ui.large.block.header {
@@ -475,18 +482,22 @@ a.ui.inverted.yellow.header:hover {
 
 .ui.attached.header {
   background: @attachedBackground;
-  margin: 0em;
   padding: @attachedVerticalPadding @attachedHorizontalPadding;
-  box-shadow: @attachedBoxShadow;
-  border: @attachedBorder;
   margin-left: @attachedOffset;
   margin-right: @attachedOffset;
+  box-shadow: @attachedBoxShadow;
+  border: @attachedBorder;
 }
+.ui.attached.block.header {
+  background: @blockBackground;
+}
+
 .ui.attached:not(.top):not(.bottom).header {
   margin-top: 0em;
   margin-bottom: 0em;
   border-top: none;
   border-bottom: none;
+  border-radius: 0em;
 }
 .ui.top.attached.header {
   margin-bottom: 0em;
@@ -506,7 +517,7 @@ a.ui.inverted.yellow.header:hover {
 .ui.small.attached.header {
   font-size: @smallAttached;
 }
-.ui.attached.header {
+.ui.attached.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   font-size: @mediumAttached;
 }
 .ui.large.attached.header {

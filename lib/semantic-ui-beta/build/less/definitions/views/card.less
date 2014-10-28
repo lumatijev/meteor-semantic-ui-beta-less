@@ -16,7 +16,7 @@
 @type    : 'view';
 @element : 'card';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 /*******************************
             Standard
@@ -134,6 +134,10 @@
 
 .ui.cards > .card > .content,
 .ui.card > .content {
+
+}
+.ui.cards > .card > .content,
+.ui.card > .content {
   background: @contentBackground;
   margin: @contentMargin;
   padding: @contentPadding;
@@ -158,10 +162,18 @@
   display: block;
   margin: @headerMargin;
   font-family: @headerFont;
-  font-weight: @headerFontWeight;
-  font-size: @headerFontSize;
   color: @headerColor;
 }
+
+/* Default Header Size */
+.ui.cards > .card > .content > .header:not(.ui),
+.ui.card > .content > .header:not(.ui) {
+  font-weight: @headerFontWeight;
+  font-size: @headerFontSize;
+  margin-top: @headerLineHeightOffset;
+  line-height: @headerLineHeight;
+}
+
 .ui.cards > .card > .content > .meta + .description,
 .ui.cards > .card > .content > .header + .description,
 .ui.card > .content > .meta + .description,
@@ -292,7 +304,8 @@
 .ui.card > .buttons:last-child,
 .ui.cards > .card > .button:last-child,
 .ui.card > .button:last-child {
-  margin-bottom: -@borderWidth;
+  margin: @buttonMargin;
+  width: @buttonWidth;
 }
 
 /*--------------

@@ -17,7 +17,7 @@
 @type    : 'module';
 @element : 'shape';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -47,6 +47,9 @@
   display: none;
 }
 
+.ui.shape .side > * {
+  backface-visibility: visible !important;
+}
 
 /*******************************
              Types

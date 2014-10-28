@@ -16,7 +16,7 @@
 @type    : 'module';
 @element : 'dimmer';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -33,8 +33,8 @@
   top: 0em !important;
   left: 0em !important;
 
-  width: 0%;
-  height: 0%;
+  width: 100%;
+  height: 100%;
 
   text-align: @textAlign;
   vertical-align: @verticalAlign;
@@ -48,7 +48,7 @@
   transition: @transition;
 
   user-select: none;
-  will-transform: opacity;
+  will-change: opacity;
   z-index: @zIndex;
 }
 
@@ -75,6 +75,7 @@
             States
 *******************************/
 
+.animating.dimmable:not(body),
 .dimmed.dimmable:not(body) {
   overflow: @overflow;
 }
@@ -83,8 +84,6 @@
 .dimmed.dimmable > .ui.visible.dimmer,
 .ui.active.dimmer {
   display: block;
-  width: 100%;
-  height: 100%;
   opacity: @visibleOpacity;
 }
 
@@ -108,6 +107,7 @@
   transform-origin: center center;
 }
 
+body.animating.in.dimmable,
 body.dimmed.dimmable {
   overflow: hidden;
 }
@@ -150,6 +150,8 @@ body.dimmed.dimmable > :not(.dimmer){
   display: block;
   overflow: hidden;
   opacity: 1;
+  width: 0%;
+  height: 0%;
   z-index: -100;
   background-color: @simpleStartBackground;
 }

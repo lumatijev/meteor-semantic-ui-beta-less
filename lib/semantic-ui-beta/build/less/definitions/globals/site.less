@@ -16,15 +16,7 @@
 @type    : 'global';
 @element : 'site';
 
-@import '../../semantic.config';
-
-/*******************************
-           Web Fonts
-*******************************/
-
-.loadFonts() when (@useGoogleFonts) {
-  @import (css) 'http://fonts.googleapis.com/css?family=@{googleFontName}:@{googleFontSizes}';
-}
+@import '../../theme.config';
 .loadFonts();
 
 /*******************************
@@ -41,6 +33,7 @@
 html,
 body {
   height: 100%;
+  font-size: @fontSize;
   font-smoothing: @fontSmoothing;
 }
 
@@ -52,7 +45,6 @@ body {
   background: @pageBackground;
 
   font-family: @pageFont;
-  font-size: @fontSize;
   line-height: @lineHeight;
   color: @textColor;
   overflow-x: @pageOverflowX;
@@ -112,4 +104,7 @@ a:hover {
   color: @highlightColor;
 }
 
+.loadFonts() when (@importGoogleFonts) {
+  @import (css) 'http://fonts.googleapis.com/css?family=@{googleFontName}:@{googleFontSizes}';
+}
 .loadUIOverrides();

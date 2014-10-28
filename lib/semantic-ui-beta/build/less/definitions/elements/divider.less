@@ -16,7 +16,7 @@
 @type    : 'element';
 @element : 'divider';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -31,6 +31,7 @@
 
   font-weight: @fontWeight;
   text-transform: @textTransform;
+  letter-spacing: @letterSpacing;
   color: @color;
 
   user-select: none;
@@ -85,7 +86,7 @@
 }
 
 .ui.horizontal.divider:before {
-  margin-left: -(50% + @horizontalDividerMargin);
+  margin-left: @horizontalRulerOffset;
 }
 .ui.horizontal.divider:after {
   margin-left: @horizontalDividerMargin;
@@ -108,6 +109,7 @@
 
   line-height: 0em;
   text-align: center;
+  transform: translateX(-50%);
 }
 
 .ui.vertical.divider:before,
@@ -138,7 +140,7 @@
   .ui.grid .stackable.row .ui.vertical.divider {
     position: relative;
     margin: @margin;
-    left: 0;
+    left: 50%;
     height: auto;
     overflow: hidden;
     line-height: 1;

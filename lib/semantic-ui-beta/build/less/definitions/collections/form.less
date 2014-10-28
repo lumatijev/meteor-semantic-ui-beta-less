@@ -16,7 +16,7 @@
 @type    : 'collection';
 @element : 'form';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -48,6 +48,7 @@
   clear: both;
   margin: @fieldMargin;
 }
+.ui.form .fields:last-child .field,
 .ui.form :not(.fields) .field:last-child {
   margin-bottom: 0em;
 }
@@ -64,13 +65,22 @@
   font-weight: @labelFontWeight;
   text-transform: @labelTextTransform;
 }
-.ui.form .grouped.fields > label,
-.ui.form .inline.fields > label {
+.ui.form .grouped.fields > label {
   margin: @groupedLabelMargin;
   color: @groupedLabelColor;
   font-size: @groupedLabelFontSize;
   font-weight: @groupedLabelFontWeight;
   text-transform: @groupedLabelTextTransform;
+}
+.ui.form .inline.fields > label {
+  display: inline-block;
+  vertical-align: middle;
+
+  margin: @inlineLabelMargin;
+  color: @inlineLabelColor;
+  font-size: @inlineLabelFontSize;
+  font-weight: @inlineLabelFontWeight;
+  text-transform: @inlineLabelTextTransform;
 }
 
 /*--------------------
@@ -88,6 +98,7 @@
 .ui.form input[type="tel"],
 .ui.form .ui.input {
   width: 100%;
+  vertical-align: top;
 }
 
 .ui.form input[type="text"],
@@ -151,6 +162,24 @@
 
 .ui.form input.attached {
   width: auto;
+}
+
+
+/*--------------------
+     Basic Select
+---------------------*/
+
+.ui.form select {
+  display: block;
+  height: auto;
+  width: 100%;
+  background: @selectBackground;
+  border: @selectBorder;
+  border-radius: @selectBorderRadius;
+  box-shadow: @selectBoxShadow;
+  padding: @selectPadding;
+  color: @selectColor;
+  transition: @selectTransition;
 }
 
 /*--------------------
@@ -373,15 +402,15 @@
 }
 .ui.form .fields.error .field .ui.dropdown,
 .ui.form .field.error .ui.dropdown {
-  box-shadow: 0px 0px 0px 1px @formErrorBorder !important;
+  border-color: @formErrorBorder !important;
 }
 .ui.form .fields.error .field .ui.dropdown:hover,
 .ui.form .field.error .ui.dropdown:hover {
-  box-shadow: 0px 0px 0px 1px @formErrorBorder !important;
+  border-color: @formErrorBorder !important;
 }
 .ui.form .fields.error .field .ui.dropdown:hover .menu,
 .ui.form .field.error .ui.dropdown:hover .menu {
-  box-shadow: 0px 1px 0px 1px @formErrorBorder;
+  border-color: @formErrorBorder;
 }
 /* Hover */
 .ui.form .fields.error .field .ui.dropdown .menu .item:hover,
@@ -434,25 +463,62 @@
 }
 
 
-/*--------------------
-     Loading State
----------------------*/
+/*--------------
+    Loading
+---------------*/
 
-/* On Form */
-.ui.form.loading {
+.ui.loading.form {
   position: relative;
+  cursor: default;
+  point-events: none;
+  text-shadow: none !important;
+  color: transparent !important;
+  transition: all 0s linear;
+  z-index: 100;
 }
-.ui.form.loading:after {
+.ui.loading.form:before {
   position: absolute;
+  content: '';
   top: 0%;
   left: 0%;
-  content: '';
-
+  background: @loaderDimmerColor;
   width: 100%;
   height: 100%;
-  background: @formLoaderDimmerColor url(@formLoaderPath) no-repeat @formLoaderPosition;
-  visibility: visible;
+  z-index: @loaderDimmerZIndex;
 }
+.ui.loading.form:after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+
+  margin: @loaderMargin;
+  width: @loaderSize;
+  height: @loaderSize;
+
+  animation: form-spin @loaderSpeed linear;
+  animation-iteration-count: infinite;
+
+  border-radius: @circularRadius;
+
+  border-color: @loaderLineColor @loaderFillColor @loaderFillColor @loaderFillColor;
+  border-style: solid;
+  border-width: @loaderLineWidth;
+
+  box-shadow: 0px 0px 0px 1px transparent;
+  visibility: visible;
+  z-index: @loaderLineZIndex;
+}
+
+@keyframes form-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 /*******************************
          Element Types
@@ -489,9 +555,6 @@
 .ui.inverted.form .ui.checkbox label,
 .ui.inverted.form .ui.checkbox .box {
   color: @invertedLabelColor;
-}
-.ui.inverted.form.loading:after {
-  background: @formInvertedLoaderDimmerColor url(@formInvertedLoaderPath) no-repeat @formLoaderPosition;
 }
 
 /*--------------------
@@ -556,6 +619,26 @@
 .ui.form .five.fields > .fields,
 .ui.form .five.fields > .field {
   width: @fiveColumn;
+}
+.ui.form .six.fields > .fields,
+.ui.form .six.fields > .field {
+  width: @sixColumn;
+}
+.ui.form .seven.fields > .fields,
+.ui.form .seven.fields > .field {
+  width: @sevenColumn;
+}
+.ui.form .eight.fields > .fields,
+.ui.form .eight.fields > .field {
+  width: @eightColumn;
+}
+.ui.form .nine.fields > .fields,
+.ui.form .nine.fields > .field {
+  width: @nineColumn;
+}
+.ui.form .ten.fields > .fields,
+.ui.form .ten.fields > .field {
+  width: @tenColumn;
 }
 
 /* Swap to full width on mobile */
@@ -685,6 +768,7 @@
 }
 .ui.form .inline.fields .field {
   display: inline-block;
+  float: none;
   margin: @inlineFieldsMargin;
   padding: 0em;
 }

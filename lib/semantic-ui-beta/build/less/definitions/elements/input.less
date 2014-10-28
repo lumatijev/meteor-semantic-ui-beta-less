@@ -16,7 +16,7 @@
 @type    : 'element';
 @element : 'input';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 
 /*******************************
@@ -186,7 +186,7 @@
   text-align: center;
   top: 50%;
   width: 100%;
-  margin-top: -0.5em;
+  margin-top: @iconOffset;
 }
 .ui.icon.input > .link.icon {
   cursor: pointer;
@@ -200,16 +200,16 @@
 }
 
 /* Left Icon Input */
-.ui.left.icon.input > .icon {
+.ui[class*="left icon"].input > .icon {
   right: auto;
   left: @borderWidth;
   border-radius: @borderRadius 0em 0em @borderRadius;
 }
-.ui.left.icon.input > .circular.icon {
+.ui[class*="left icon"].input > .circular.icon {
   right: auto;
   left: @circularIconHorizontalOffset;
 }
-.ui.left.icon.input > input {
+.ui[class*="left icon"].input > input {
   padding-left: @iconMargin !important;
   padding-right: @horizontalPadding !important;
 }
@@ -222,7 +222,7 @@
   padding-left: 0em !important;
   padding-right: @transparentIconMargin !important;
 }
-.ui.transparent.left.icon.input > input {
+.ui.transparent[class*="left icon"].input > input {
   padding-left: 0em !important;
   padding-left: @transparentIconMargin !important;
 }
@@ -236,10 +236,63 @@
         Labeled
 ---------------------*/
 
+
+/* Adjacent Label */
+.ui.labeled.input {
+  display: table;
+}
+.ui.labeled.input > input {
+  display: table-cell;
+  vertical-align: top;
+}
+.ui.labeled.input > .label {
+  display: table-cell;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size: 1em;
+}
+.ui.labeled.input > .label > .icon {
+  display: inline;
+  vertical-align: top;
+}
+
+/* Fluid Labeled */
+.ui.fluid.labeled.input {
+  display: table;
+  width: 100%;
+}
+.ui.fluid.labeled.input > .label {
+  width: 0.01%;
+}
+
+/* Label on Left */
+.ui.labeled.input:not([class*="corner labeled"]):not([class*="right labeled"]) > input {
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.ui.labeled.input:not([class*="corner labeled"]):not([class*="right labeled"]) > .label {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/* Label on Right */
+.ui[class*="right labeled"].input  > input {
+  border-right: none;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.ui[class*="right labeled"].input > .label {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+
+/* Corner Label */
 .ui.labeled.input .corner.label {
-  top: @labelTop;
-  right: @labelRight;
-  font-size: @labelSize;
+  top: @labelCornerTop;
+  right: @labelCornerRight;
+  font-size: @labelCornerSize;
   border-radius: 0em @borderRadius 0em 0em;
 }
 .ui.labeled.input input {
@@ -247,13 +300,18 @@
 }
 
 /* Spacing with corner label */
-.ui.labeled.icon.input:not(.left) > input {
+.ui[class*="corner labeled"].input {
+  display: inline-block;
+}
+.ui[class*="corner labeled"].input > input {
+  display: block;
+}
+.ui[class*="corner labeled"].icon.input:not(.left) > input {
   padding-right: @labeledIconInputMargin !important;
 }
-.ui.labeled.icon.input:not(.left) > .icon {
+.ui[class*="corner labeled"].icon.input:not(.left) > .icon {
   margin-right: @labeledIconMargin;
 }
-
 
 /*--------------------
         Action
@@ -265,16 +323,12 @@
 
 .ui.action.input > input {
   display: table-cell;
-  border-top-right-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  border-right: none;
+  vertical-align: top;
 }
 .ui.action.input > .button,
 .ui.action.input > .buttons {
   display: table-cell;
-
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  vertical-align: middle;
   white-space: nowrap;
 }
 .ui.action.input > .button > .icon,
@@ -289,6 +343,30 @@
 }
 .ui.fluid.action.input > .button {
   width: 0.01%;
+}
+
+/* Button on Right */
+.ui.action.input:not([class*="left action"]) > input {
+  border-right: none;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.ui.action.input:not([class*="left action"]) > .button,
+.ui.action.input:not([class*="left action"]) > .buttons {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+/* Button on Left */
+.ui[class*="left action"].input > .button,
+.ui[class*="left action"].input > .buttons {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.ui[class*="left action"].input  > input {
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 /*--------------------

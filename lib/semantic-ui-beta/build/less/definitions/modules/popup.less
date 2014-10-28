@@ -16,7 +16,7 @@
 @type    : 'module';
 @element : 'popup';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
 /*******************************
             Popup
@@ -175,6 +175,16 @@
   right: auto;
   margin-top: @arrowOffset;
   box-shadow: @rightArrowBoxShadow;
+}
+
+/*******************************
+            Coupling
+*******************************/
+
+/* Immediate Nested Grid */
+.ui.popup > .ui.grid:not(.padded) {
+  width: @nestedGridWidth;
+  margin: @nestedGridMargin;
 }
 
 /*******************************

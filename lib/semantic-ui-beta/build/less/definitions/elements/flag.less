@@ -16,9 +16,9 @@
 @type    : 'element';
 @element : 'flag';
 
-@import '../../semantic.config';
+@import '../../theme.config';
 
-i.flag {
+i.flag:not(.icon) {
   display: inline-block;
 
   width: @width;
@@ -35,7 +35,7 @@ i.flag {
   backface-visibility: hidden;
 }
 
-i.flag:before {
+i.flag:not(.icon):before {
   display: inline-block;
   content: '';
   background: url(@spritePath) no-repeat 0px 0px;
