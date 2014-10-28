@@ -1,3 +1,6 @@
+#CURRENTLY NOT WORKING CORRECTLY
+Don't have enough time to fix bugs after updating to a new version...
+
 ##Semantic UI Beta (less) packaged for Meteor
 
 ###Semantic UI
